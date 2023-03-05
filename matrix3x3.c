@@ -1,23 +1,6 @@
 #include <stdio.h>
+#include "matrix3x3.h"
 
-
-typedef struct 
-{
-    int A11;
-    int A12;
-    int A13;
-    int A1C;
-
-    int A21;
-    int A22;
-    int A23;
-    int A2C;
-
-    int A31;
-    int A32;
-    int A33;
-    int A3C;
-} matrix3x3;
 
 // define equation
 matrix3x3 equation;
@@ -38,7 +21,7 @@ matrix3x3 equations(void)
     printf("= ");
     scanf("%d", &equation.A1C);
     
-    printf("Second equation:\nx: \n");
+    printf("Second equation:\nx: ");
     scanf("%d", &equation.A21);
     printf("y: ");
     scanf("%d", &equation.A22);
@@ -60,7 +43,7 @@ matrix3x3 equations(void)
 }
 
 
-int find_determinant(void)
+int find_determinant(matrix3x3 equations)
 {
 
     // here we do some magic
@@ -73,7 +56,9 @@ int find_determinant(void)
     return determinant;
 }
 
-int *matrix_inverse(void) 
+matrix3x3 matrix_inverse(matrix3x3 *equation) 
 {
-
+    matrix3x3 temp = *equation;
+    // return inversed
+    printf("%d", temp.A11);
 }

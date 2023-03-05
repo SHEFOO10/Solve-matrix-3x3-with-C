@@ -4,7 +4,8 @@
 
 int main()
 {
-    equations();
-    // find_xyz();
+    matrix3x3 equations = equations();
+    int determinant = find_determinant(equations);
+    printf("%d", determinant);
     return 0;
 }
