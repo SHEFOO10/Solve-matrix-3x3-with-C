@@ -20,8 +20,8 @@ typedef struct
 
 matrix3x3 equations(void);
 
-int find_determinant(matrix3x3 *equations);
+float find_determinant(matrix3x3 *equations);
 
 matrix3x3 *matrix_inverse(matrix3x3 *equation);
 
-int find_xyz(matrix3x3 *inversed, int determinant, float *x, float *y, float *z);
+int find_xyz(matrix3x3 *inversed, float determinant, float *x, float *y, float *z);

@@ -43,16 +43,17 @@ matrix3x3 equations(void)
 }
 
 
-int find_determinant(matrix3x3 *equations)
+float find_determinant(matrix3x3 *equations)
 {
 
     // here we do some magic
     // to get the determinant
-    int determinant = (equation.A11 * (equation.A22 * equation.A33 - equation.A23 * equation.A32) \
+    float determinant = (equation.A11 * (equation.A22 * equation.A33 - equation.A23 * equation.A32) \
             - equation.A12 * (equation.A21 * equation.A33 - equation.A23 * equation.A31) \
             + equation.A13 * (equation.A21 * equation.A32 - equation.A22 * equation.A31));
 
-    printf("The determinant is : %d \n", determinant);
+    
+    printf("The determinant is : %.1f \n", determinant);
     return determinant;
 }
 
@@ -97,7 +98,7 @@ matrix3x3 *matrix_inverse(matrix3x3 *equation)
 }
 
 
-int find_xyz(matrix3x3 *inversed, int determinant, float *x, float *y, float *z)
+int find_xyz(matrix3x3 *inversed, float determinant, float *x, float *y, float *z)
 {
         *x = (inversed->A11 * inversed->A1C + inversed->A12 * inversed->A2C + inversed->A13 * inversed->A3C) / determinant;
         *y = (inversed->A21 * inversed->A1C + inversed->A22 * inversed->A2C + inversed->A23 * inversed->A3C) / determinant;
