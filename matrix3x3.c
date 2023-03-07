@@ -56,29 +56,52 @@ int find_determinant(matrix3x3 *equations)
     return determinant;
 }
 
-matrix3x3 matrix_inverse(matrix3x3 *equation, int *determinant) 
+matrix3x3 *matrix_inverse(matrix3x3 *equation) 
 {
     matrix3x3 temp = *equation;
     
-    printf("Before Changing >>\n A11 = %d , A12 = %d , A13 = %d\nA21 = %d, A22 = %d, A23 = %d\nA31 = %d, A32 = %d, A33 = %d\n", equation->A11, equation->A12, equation->A13, equation->A21, equation->A22, equation->A23, equation->A31, equation->A32, equation->A33);
+    // printf("Before Changing >>\nA11 = %d , A12 = %d , A13 = %d\nA21 = %d, A22 = %d, A23 = %d\nA31 = %d, A32 = %d, A33 = %d\n",\
+    //  equation->A11, equation->A12, equation->A13, equation->A21, equation->A22, equation->A23, equation->A31, equation->A32, equation->A33);  //just for testing
 
-    // First Row
-    equation->A11 = (temp.A22 * temp.A33 - temp.A23 * temp.A32) / *determinant;
-    equation->A12 = -1 * ((temp.A21 * temp.A33 - temp.A23 * temp.A31) / *determinant);
-    equation->A13 = (temp.A21 * temp.A32 - temp.A22 * temp.A31) / *determinant;
-    // Second Row 
-    equation->A21 = -1 * ((temp.A12 * temp.A33 - temp.A13 * temp.A32) / *determinant);
-    equation->A22 = (temp.A11 * temp.A33 - temp.A13 * temp.A31) / *determinant;
-    equation->A23 = -1 * ((temp.A11 * temp.A32 - temp.A12 * temp.A31) / *determinant);
-    // Third Row  -1 * (
-    equation->A31 = (temp.A12 * temp.A23 - temp.A13 * temp.A22) / *determinant;
-    equation->A32 = -1 * ((temp.A11 * temp.A23 - temp.A13 * temp.A21) / *determinant);
-    equation->A33 = (temp.A11 * temp.A22 - temp.A12 * temp.A21) / *determinant;
+    // // First Row
+    equation->A11 = (temp.A22 * temp.A33 - temp.A23 * temp.A32);
+    // equation->A12 = -1 * ((temp.A21 * temp.A33 - temp.A23 * temp.A31));
+    // equation->A13 = (temp.A21 * temp.A32 - temp.A22 * temp.A31);
+    // // Second Row 
+    // equation->A21 = -1 * ((temp.A12 * temp.A33 - temp.A13 * temp.A32));
+    equation->A22 = (temp.A11 * temp.A33 - temp.A13 * temp.A31) ;                                   // Before transposition
+    // equation->A23 = -1 * ((temp.A11 * temp.A32 - temp.A12 * temp.A31) );
+    // // Third Row  -1 * (
+    // equation->A31 = (temp.A12 * temp.A23 - temp.A13 * temp.A22) ;
+    // equation->A32 = -1 * ((temp.A11 * temp.A23 - temp.A13 * temp.A21) );
+    equation->A33 = (temp.A11 * temp.A22 - temp.A12 * temp.A21) ;
 
-    printf("After changing >>\n A11 = %d , A12 = %d , A13 = %d\nA21 = %d, A22 = %d, A23 = %d\nA31 = %d, A32 = %d, A33 = %d", equation->A11, equation->A12, equation->A13, equation->A21, equation->A22, equation->A23, equation->A31, equation->A32, equation->A33);
+    //After Transposition
+    equation->A12 = -1 * ((temp.A12 * temp.A33 - temp.A13 * temp.A32));
+    equation->A13 = (temp.A12 * temp.A23 - temp.A13 * temp.A22);
+
+    equation->A21 = -1 * ((temp.A21 * temp.A33 - temp.A23 * temp.A31));
+    equation->A23 = -1 * ((temp.A11 * temp.A23 - temp.A13 * temp.A21));
+
+    equation->A31 = (temp.A21 * temp.A32 - temp.A22 * temp.A31);
+    equation->A32 = -1 * ((temp.A11 * temp.A32 - temp.A12 * temp.A31));
+
+
+    // printf("After changing >>\nA11 = %d , A12 = %d , A13 = %d\nA21 = %d, A22 = %d, A23 = %d\nA31 = %d, A32 = %d, A33 = %d",\
+    //  equation->A11, equation->A12, equation->A13, equation->A21, equation->A22, equation->A23, equation->A31, equation->A32, equation->A33);  // just for testing
     // temp.A11 = 12;
     // printf("A11 from matrix inverse function: %d \n", equation->A11); /* for only testing*/
     // printf("temp A11 after changing: %d", temp.A11);
-    // return inversed
+    return equation;
     
+}
+
+
+int find_xyz(matrix3x3 *inversed, int determinant, float *x, float *y, float *z)
+{
+        *x = (inversed->A11 * inversed->A1C + inversed->A12 * inversed->A2C + inversed->A13 * inversed->A3C) / determinant;
+        *y = (inversed->A21 * inversed->A1C + inversed->A22 * inversed->A2C + inversed->A23 * inversed->A3C) / determinant;
+        *z = (inversed->A31 * inversed->A1C + inversed->A32 * inversed->A2C + inversed->A33 * inversed->A3C) / determinant;
+        
+        return 1;
 }
