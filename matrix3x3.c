@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "matrix3x3.h"
 
-
 // define equation
 matrix3x3 equation;
 int x, y, z;
@@ -103,6 +102,7 @@ int find_xyz(matrix3x3 *inversed, float determinant, float *x, float *y, float *
         *x = (inversed->A11 * inversed->A1C + inversed->A12 * inversed->A2C + inversed->A13 * inversed->A3C) / determinant;
         *y = (inversed->A21 * inversed->A1C + inversed->A22 * inversed->A2C + inversed->A23 * inversed->A3C) / determinant;
         *z = (inversed->A31 * inversed->A1C + inversed->A32 * inversed->A2C + inversed->A33 * inversed->A3C) / determinant;
-        
+
+       
         return 1;
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "matrix3x3.h"
+#include <math.h>
 
 
 int main()
@@ -11,9 +12,12 @@ int main()
     matrix3x3 *inversed = matrix_inverse(&equations_container);
     find_xyz(inversed, determinant, &x, &y, &z);
 
-    if (determinant == 0)
+     if(isnan(x)){
+            printf("many solutions");
+    }
+    else if(isinf(x))
     {
-        printf("many solutions");
+        printf("no solution");
     }
     else
     {
