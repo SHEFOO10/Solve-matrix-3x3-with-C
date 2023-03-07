@@ -3,7 +3,6 @@
 
 // define equation
 matrix3x3 equation;
-int x, y, z;
 
 
 matrix3x3 equations(void)
